@@ -11,6 +11,7 @@ var image = ctx.getImageData(0, 0, canvas.width, canvas.height);
 var service = require('./services/mould');
 
 setInterval(function() {
+    image.data[200 * image.width * 4 + 200 * 4] = 1;
     service.recalculate(image);
     ctx.putImageData(image, 0, 0);
 }, 10);

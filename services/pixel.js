@@ -1,4 +1,4 @@
-var RgbColor = require('./rgbColor.js');
+var RgbColor = require('./services/rgbColor');
 
 function Pixel() {
     this.rgb = new RgbColor();
