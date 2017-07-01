@@ -1,35 +1,58 @@
+var rgb = require('./rgb');
+
 var blockSize = 4;
 
 function recalculate(image) {
     var data = image.data;
     var infected = [];
     for (var i = 0; i < data.length - 1; i += blockSize) {
-        var r = data[i];
-        if (r > 0) {
-            data[i] = resolveNextColour(r);
+        if (isInfected(data, i)) {
+            var color = getNextColour(data, i);
+            data[i] = color.r;
+            data[i + 1] = color.g;
+            data[i + 2] = color.b;
             data[i + 3] = 255;
-            infected.push(i + getRandomFactor() * image.width * blockSize + getRandomFactor() * blockSize);
-            infected.push(i + getRandomFactor() * blockSize);
+            infected.push(getRandomNeighbourIndex(image.width, i));
         }
     }
     infected.forEach(function(i) {
-        var r = data[i];
-        if (r === 0) {
-            data[i] = 1;
+        if (!isInfected(data, i)) {
+            setAsInfected(data, i);
         }
     });
 }
 
-function resolveNextColour(p) {
-    p++;
-    if (p > 255) p = 1;
-    return p;
+function getNextColour(data, i) {
+    return rgb.resolveNextColour({
+        r: data[i],
+        g: data[i + 1],
+        b: data[i + 2]
+    });
+}
+
+function getRandomNeighbourIndex(imageWidth, i) {
+    var s = getRandomFactor() * 2 > 1;
+    return s ?
+        i + getRandomFactor() * imageWidth * blockSize + getRandomFactor() * blockSize :
+        i + getRandomFactor() * blockSize;
 }
 
 function getRandomFactor() {
     return Math.floor(Math.random() * 3) - 1;
 }
 
+function isInfected(data, i) {
+    return data[i] !== 0;
+}
+
+function setAsInfected(data, i) {
+    data[i] = 255;
+    data[i + 1] = 255;
+    data[i + 2] = 255;
+    data[i + 3] = 255;
+}
+
 module.exports = {
-    recalculate: recalculate
+    recalculate: recalculate,
+    setAsInfected: setAsInfected
 };
