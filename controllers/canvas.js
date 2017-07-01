@@ -14,7 +14,7 @@ var image = ctx.getImageData(0, 0, canvas.width, canvas.height);
 var service = require('./services/mould');
 
 initInterval();
-initOnClicEvent();
+initOnClickEvent();
 
 function initInterval() {
     setInterval(function() {
@@ -23,7 +23,7 @@ function initInterval() {
     }, 100);
 }
 
-function initOnClicEvent() {
+function initOnClickEvent() {
     canvas.addEventListener('click', function(event) {
         var x = event.pageX - canvasLeft;
         var y = event.pageY - canvasTop;
@@ -31,6 +31,8 @@ function initOnClicEvent() {
     }, false);
 }
 
+var blockSize = 4;
+
 function resolveDataIndex(x, y) {
-    return y * image.width * 4 + x * 4;
+    return y * image.width * blockSize + x * blockSize;
 }

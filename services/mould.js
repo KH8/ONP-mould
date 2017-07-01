@@ -31,8 +31,7 @@ function getNextColour(data, i) {
 }
 
 function getRandomNeighbourIndex(imageWidth, i) {
-    var s = getRandomFactor() * 2 > 1;
-    return s ?
+    return getRandomFactor() > 0 ?
         i + getRandomFactor() * imageWidth * blockSize + getRandomFactor() * blockSize :
         i + getRandomFactor() * blockSize;
 }
