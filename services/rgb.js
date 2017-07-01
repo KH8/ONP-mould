@@ -1,14 +1,7 @@
-var maxColorValue = 255;
-
-function resolveNextColour(p) {
-    if (p.r > 1) {
-        p.r -= 1;
-        p.g -= 1;
-        p.b -= 1;
-    }
-    return p;
+function Rgb(data, i) {
+    this.r = data ? data[i] : 0;
+    this.g = data ? data[i + 1] : 0;
+    this.b = data ? data[i + 2] : 0;
 }
 
-module.exports = {
-    resolveNextColour: resolveNextColour
-};
+module.exports = Rgb;

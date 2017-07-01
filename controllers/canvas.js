@@ -11,7 +11,10 @@ var canvasTop = canvas.offsetTop;
 var ctx = canvas.getContext("2d");
 var image = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-var service = require('./services/mould');
+var Strategy = require('./strategies/mould');
+var Service = require('./services/runner');
+
+var service = new Service(new Strategy());
 
 initInterval();
 initOnClickEvent();
