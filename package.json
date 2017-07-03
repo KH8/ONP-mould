@@ -2,7 +2,8 @@
     "name": "mould",
     "version": "0.1.0",
     "main": "app.js",
-    "devDependencies": {
-        "electron": "^1.6.11"
+    "dependencies": {
+        "electron": "^1.6.11",
+        "yargs": "^8.0.2"
     }
 }

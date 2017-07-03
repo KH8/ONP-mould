@@ -2,6 +2,14 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
 
+function aquireArgs() {
+    const argv = require('yargs').argv;
+    var strategy = argv.strategy || "mould";
+    global.shared = { strategy: strategy };
+}
+
+aquireArgs();
+
 let mainWindow;
 
 function createWindow() {

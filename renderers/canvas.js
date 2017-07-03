@@ -12,7 +12,8 @@ var canvasTop = canvas.offsetTop;
 var ctx = canvas.getContext("2d");
 var image = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-const Strategy = require('./strategies/mould');
+const strategy = electron.remote.getGlobal('shared').strategy;
+const Strategy = require('./strategies/' + strategy);
 const Service = require('./services/runner');
 
 var service = new Service(new Strategy());
