@@ -1,4 +1,4 @@
-var Rgb = require('./../services/rgb');
+const Rgb = require('./../services/rgb');
 
 function LichenStrategy() {}
 

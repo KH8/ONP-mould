@@ -1,9 +1,8 @@
 {
-    "version": "0.0.1",
-    "name": "helloworld",
-    "main": "index.html",
-    "window": {
-        "width": 800,
-        "height": 600
+    "name": "mould",
+    "version": "0.1.0",
+    "main": "app.js",
+    "devDependencies": {
+        "electron": "^1.6.11"
     }
 }
